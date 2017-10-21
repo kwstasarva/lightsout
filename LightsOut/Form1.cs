@@ -26,7 +26,7 @@ namespace LightsOut
         {
             InitializeBoard();
         }
-        
+
         private void InitializeBoard()
         {
             //Setting the size of The form
@@ -39,23 +39,37 @@ namespace LightsOut
             {
                 for (int j = 0; j < tileArray.GetLength(1); j++) //GetLength(1) => Will get the length of the second dimension of the array
                 {
-                    Button btn = new Button();
-                    btn.Width = Constants.tileWidth;
-                    btn.Height = Constants.tileHeight;
-                    btn.Name = Constants.buttonsNamePrefix + counter;
-                    btn.Location = new Point(Constants.distanceBetweenTilesX * i, Constants.distanceBetweenTilesY * j);
-                    btn.Tag = i.ToString() + "," + j.ToString();
-                    btn.Click += Btn_Click;
-                    this.Controls.Add(btn);
+                    Button tile = CreateTile(i, j, counter);
+                    this.Controls.Add(tile);
 
                     counter++;
                 }
             }
         }
 
+        /// <summary>
+        /// Creates a new Tile.
+        /// </summary>
+        /// <param name="positionX">X position of the tile</param>
+        /// <param name="positionY">Y position of the tile</param>
+        /// <param name="counter">Counter that will be used for tile naming</param>
+        /// <returns>A tile</returns>
+        private Button CreateTile(int positionX, int positionY, int counter)
+        {
+            Button tile = new Button();
+            tile.Width = Constants.tileWidth;
+            tile.Height = Constants.tileHeight;
+            tile.Name = Constants.buttonsNamePrefix + counter;
+            tile.Location = new Point(Constants.distanceBetweenTilesX * positionX, Constants.distanceBetweenTilesY * positionY);
+            tile.Tag = positionX.ToString() + "," + positionY.ToString();
+            tile.Click += Btn_Click;
+
+            return tile;
+        }
+
         private void Btn_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            Button tile = (Button)sender;
         }
     }
 }
