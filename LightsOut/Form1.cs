@@ -35,11 +35,11 @@ namespace LightsOut
             //Counter will be used for naming the form buttons.
             int counter = 1;
 
-            for (int i = 0; i < tileArray.GetLength(0); i++) //GetLength(0) => Will get the length of the first dimension of the array
+            for (int x = 0; x < tileArray.GetLength(0); x++) //GetLength(0) => Will get the length of the first dimension of the array
             {
-                for (int j = 0; j < tileArray.GetLength(1); j++) //GetLength(1) => Will get the length of the second dimension of the array
+                for (int y = 0; y < tileArray.GetLength(1); y++) //GetLength(1) => Will get the length of the second dimension of the array
                 {
-                    Button tile = CreateTile(i, j, counter);
+                    Button tile = CreateTile(x, y, counter);
                     this.Controls.Add(tile);
 
                     counter++;
