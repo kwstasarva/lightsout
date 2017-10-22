@@ -9,6 +9,6 @@ namespace LightsOutBL.Helpers.IHelpers
 {
     public interface IGameEngine
     {
-        
+        bool RandomTileStateGenerator();
     }
 }
