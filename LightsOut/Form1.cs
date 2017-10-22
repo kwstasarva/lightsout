@@ -19,7 +19,8 @@ namespace LightsOut
         GameEngine gameEngine = new GameEngine();
 
         //Public array initialization
-        int[,] tileArray = new int[5, 5];
+        bool[,] tileArray = new bool[5, 5];
+        private TableLayoutPanel tableLayoutPanel = null;
 
         public Form1()
         {
@@ -33,8 +34,14 @@ namespace LightsOut
 
         private void InitializeBoard()
         {
-            //Setting the size of The form
+            tableLayoutPanel = new TableLayoutPanel();
+            this.Controls.Add(tableLayoutPanel);
+
+            //Setting the size of The form and the layout panel
             this.AutoSize = true;
+            tableLayoutPanel.AutoSize = true;
+
+            var board = gameEngine.GenerateBoard(tileArray.GetLength(0), tileArray.GetLength(1));
 
             //Counter will be used for naming the form buttons.
             int counter = 1;
@@ -43,8 +50,9 @@ namespace LightsOut
             {
                 for (int y = 0; y < tileArray.GetLength(1); y++) //GetLength(1) => Will get the length of the second dimension of the array
                 {
-                    Button tile = CreateTile(x, y, counter);
-                    this.Controls.Add(tile);
+                    var tileState = board[x, y];
+                    Button tile = CreateTile(x, y, tileState, counter);
+                    tableLayoutPanel.Controls.Add(tile, x, y);
 
                     counter++;
                 }
@@ -58,13 +66,13 @@ namespace LightsOut
         /// <param name="positionY">Y position of the tile</param>
         /// <param name="counter">Counter that will be used for tile naming</param>
         /// <returns>A tile</returns>
-        private Button CreateTile(int positionX, int positionY, int counter)
+        private Button CreateTile(int positionX, int positionY, bool tileState, int counter)
         {
             TileModel tileModel = new TileModel
             {
                 TilePositionX = positionX,
                 TilePositionY = positionY,
-                TileState = gameEngine.RandomTileStateGenerator()
+                TileState = tileState
             };
 
             Button tile = new Button();
@@ -82,6 +90,20 @@ namespace LightsOut
         private void Btn_Click(object sender, EventArgs e)
         {
             Button tile = (Button)sender;
+            TileModel tileModel = (TileModel)tile.Tag;
+            gameEngine.ToggleAdjucentTiles(tileModel, tableLayoutPanel);
+            ValidateBoard();
+        }
+
+        private void ValidateBoard()
+        {
+            bool boardIsValid = gameEngine.ValidateBoard();
+
+            if (boardIsValid)
+            {
+                MessageBox.Show("Congratulations, you won. ");
+                InitializeBoard();
+            }
         }
     }
 }
