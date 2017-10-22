@@ -1,5 +1,6 @@
 ﻿using LightsOutBL.Helpers;
 using LightsOutBL.Helpers.IHelpers;
+using LightsOutBL.Models;
 using LightsOutConstants;
 using System;
 using System.Collections.Generic;
@@ -59,15 +60,20 @@ namespace LightsOut
         /// <returns>A tile</returns>
         private Button CreateTile(int positionX, int positionY, int counter)
         {
-            bool tileState = gameEngine.RandomTileStateGenerator();
+            TileModel tileModel = new TileModel
+            {
+                TilePositionX = positionX,
+                TilePositionY = positionY,
+                TileState = gameEngine.RandomTileStateGenerator()
+            };
 
             Button tile = new Button();
             tile.Width = Constants.tileWidth;
             tile.Height = Constants.tileHeight;
             tile.Name = Constants.buttonsNamePrefix + counter;
-            tile.Location = new Point(Constants.distanceBetweenTilesX * positionX, Constants.distanceBetweenTilesY * positionY);
-            tile.BackColor = tileState == true ? Color.Yellow : Color.Gray;
-            tile.Tag = positionX.ToString() + "," + positionY.ToString();
+            tile.Location = new Point(Constants.distanceBetweenTilesX * tileModel.TilePositionX, Constants.distanceBetweenTilesY * tileModel.TilePositionY);
+            tile.BackColor = tileModel.TileState == true ? Color.Yellow : Color.Gray;
+            tile.Tag = tileModel;
             tile.Click += Btn_Click;
 
             return tile;
