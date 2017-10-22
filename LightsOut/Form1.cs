@@ -1,4 +1,5 @@
 ﻿using LightsOutBL.Helpers;
+using LightsOutBL.Helpers.IHelpers;
 using LightsOutConstants;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace LightsOut
 {
     public partial class Form1 : Form
     {
+        GameEngine gameEngine = new GameEngine();
+
         //Public array initialization
         int[,] tileArray = new int[5, 5];
 
@@ -56,11 +59,14 @@ namespace LightsOut
         /// <returns>A tile</returns>
         private Button CreateTile(int positionX, int positionY, int counter)
         {
+            bool tileState = gameEngine.RandomTileStateGenerator();
+
             Button tile = new Button();
             tile.Width = Constants.tileWidth;
             tile.Height = Constants.tileHeight;
             tile.Name = Constants.buttonsNamePrefix + counter;
             tile.Location = new Point(Constants.distanceBetweenTilesX * positionX, Constants.distanceBetweenTilesY * positionY);
+            tile.BackColor = tileState == true ? Color.Yellow : Color.Gray;
             tile.Tag = positionX.ToString() + "," + positionY.ToString();
             tile.Click += Btn_Click;
 
