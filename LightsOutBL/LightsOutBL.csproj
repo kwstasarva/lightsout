@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Helpers\GameEngine.cs" />
     <Compile Include="Helpers\IHelpers\IGameEngine.cs" />
+    <Compile Include="Models\TileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

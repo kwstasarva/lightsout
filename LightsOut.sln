@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightsOutDI", "LightsOutDI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightsOutConstants", "LightsOutConstants\LightsOutConstants.csproj", "{DE9EB2F0-C6DA-4B03-98DF-B7506831F7DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightsOutTests", "LightsOutTests\LightsOutTests.csproj", "{30FDA0BA-4848-40B3-9FB7-9FEAFB349275}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DE9EB2F0-C6DA-4B03-98DF-B7506831F7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE9EB2F0-C6DA-4B03-98DF-B7506831F7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9EB2F0-C6DA-4B03-98DF-B7506831F7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FDA0BA-4848-40B3-9FB7-9FEAFB349275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FDA0BA-4848-40B3-9FB7-9FEAFB349275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FDA0BA-4848-40B3-9FB7-9FEAFB349275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FDA0BA-4848-40B3-9FB7-9FEAFB349275}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
